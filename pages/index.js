@@ -4,11 +4,11 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import Layout, { siteTitle } from "../compornents/Layout";
 import utilStyles from "../styles/utils.module.css";
-import { getPostsData } from "../lib/posts";
+import { getSortedPostsData  } from "../lib/posts";
 
 //SSGの場合
-export async function getStaticProps() {
-  const allPostsData = getPostsData(); //id, title, thumbnail
+export async function  getStaticProps() {
+  const allPostsData = getSortedPostsData(); //id, title, thumbnail
   console.log(allPostsData);
 
   return {
