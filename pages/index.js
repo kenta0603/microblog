@@ -18,7 +18,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ allPostsData }: { allPostsData: string }) {
+export default function Home({ allPostsData }) {
   return (
     <Layout home>
       <Head>
@@ -33,37 +33,25 @@ export default function Home({ allPostsData }: { allPostsData: string }) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>📝エンジニアのブログ</h2>
         <div className={styles.grid}>
-          {allPostsData.map(
-            ({
-              id,
-              title,
-              date,
-              thumbnail,
-            }: {
-              id: string;
-              title: string;
-              date: string;
-              thumbnail: string;
-            }) => (
-              <article key={id}>
-                <Link href={`/posts/${id}`}>
-                  <picture>
-                    <source srcSet={thumbnail} type="image/jpg" />
-                    <img
-                      src={thumbnail}
-                      className={styles.thumbnailImage}
-                      alt=""
-                    />
-                  </picture>
-                </Link>
-                <Link legacyBehavior href={`/posts/${id}`}>
-                  <a className={utilStyles.boldText}>{title}</a>
-                </Link>
-                <br />
-                <small className={utilStyles.lightText}>{date}</small>
-              </article>
-            )
-          )}
+          {allPostsData.map(({ id, title, date, thumbnail }) => (
+            <article key={id}>
+              <Link href={`/posts/${id}`}>
+                <picture>
+                  <source srcSet={thumbnail} type="image/jpg" />
+                  <img
+                    src={thumbnail}
+                    className={styles.thumbnailImage}
+                    alt=""
+                  />
+                </picture>
+              </Link>
+              <Link legacyBehavior href={`/posts/${id}`}>
+                <a className={utilStyles.boldText}>{title}</a>
+              </Link>
+              <br />
+              <small className={utilStyles.lightText}>{date}</small>
+            </article>
+          ))}
         </div>
       </section>
     </Layout>
